@@ -3,7 +3,7 @@
 данный пакет предоставляет возможность выполнения основных операций с векторами и матрицами.
 
 Программный модуль представлен заголовочным файлом и файлом реализации. 
-Заголовочный файл в рамках пространства имён MyLinearAlgebra содержит объявления двух классов – TVector и TMatrix.
+Заголовочный файл в рамках пространства имён MyLinearAlgebra содержит объявления двух классов: TVector и TMatrix.
 Далее для каждого из классов приведен перечень методов с указанием назначения и примером использования.
 
 TVector
@@ -152,11 +152,11 @@ https://github.com/ftn21
 
 base linear algebra
 ===================
-this package provides the ability to perform basic operations with vectors and matrices.
+this package provides an ability to use basic operations with vectors and matrices.
 
 The program module is represented by a header file and an implementation file.
-The header file within the MyLinearAlgebra namespace contains declarations of two classes-TVector and TMatrix.
-Next, for each of the classes, a list of methods with an indication of the purpose and an example of use is provided.
+The header file within the MyLinearAlgebra namespace contains declarations of two classes: TVector and TMatrix.
+Bellow you can find a list of methods for each of the classes with a description and an example of usage.
 
 TVector
 -------
