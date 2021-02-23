@@ -1,19 +1,20 @@
-#ifndef LINALG_H  //header (interface)
+#ifndef LINALG_H
 #define LINALG_H
 
-#include <vector>  //пишем по первому варианту
+#include <vector>
 #include <stdio.h>
 
 namespace MyLinearAlgebra {
 // Опережающие объявления
 class TMatrix;
+
 // Объявление класса векторов
 class TVector {
 protected:
-    int n; // Размерность вектора
-    double *data; // Элементы вектора
+    int n;          // Размерность вектора
+    double *data;  // Элементы вектора
 public:
-    TVector(); // Конструктор по умолчанию
+    TVector();  // Конструктор по умолчанию
     TVector(int n); // Конструктор с заданным кол-вом элементов
     TVector(const TVector& rvalue); // Конструктор копий
     TVector& operator = (const TVector& rvalue); // Оператор присваивания

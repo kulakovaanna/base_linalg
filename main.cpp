@@ -1,4 +1,4 @@
-#include <iostream>    //исполняемый файл
+#include <iostream>
 #include "linalg.h"
 #include <cstring>
 #include <math.h>

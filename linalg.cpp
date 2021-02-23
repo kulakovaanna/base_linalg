@@ -8,16 +8,20 @@ using namespace std;
 
 namespace MyLinearAlgebra {
 // Векторы
+
 // Конструктор по умолчанию
 TVector::TVector() : n(0), data(NULL) {}
+
 // Конструктор по количеству элементов
 TVector::TVector(int n) : n(0), data(NULL) {
     resize(n);
 }
+
 // Конструктор копирования
 TVector::TVector(const TVector& rvalue) : n(0), data(NULL) {
     (*this) = rvalue;
 }
+
 // Оператор присваивания
 TVector& TVector::operator = (const TVector& rvalue) {
     // Если левый операнд не совпадает с правым
@@ -37,6 +41,7 @@ TVector& TVector::operator = (const TVector& rvalue) {
     // Возврат ссылки на левый операнд для возможности цепочки присваиваний
     return *this;
 }
+
 // Деструктор
 TVector::~TVector() {
     // Если блок данных ранее был инициализирован, удаляем его
@@ -46,6 +51,7 @@ TVector::~TVector() {
         data = NULL;
     }
 }
+
 // Функция задания кол-ва элементов вектора
 void TVector::resize(int n) {
 #ifdef _DEBUG
@@ -70,6 +76,7 @@ void TVector::resize(int n) {
     // Сохранение нового размера
     this->n = n;
 }
+
 // Оператор сложения векторов
 TVector TVector::operator + (const TVector& arg) const {
 #ifdef _DEBUG
@@ -81,6 +88,7 @@ TVector TVector::operator + (const TVector& arg) const {
         V[i] = data[i] + arg[i];
     return V;
 }
+
 //Операция унарный минус
 TVector TVector::operator - () const {
     TVector V(n);
@@ -88,6 +96,7 @@ TVector TVector::operator - () const {
         V[i] = -data[i];
     return V;
 }
+
 //Операция вычитания векторов
 TVector TVector::operator - (const TVector& arg) const {
     /* #ifdef _DEBUG
@@ -99,6 +108,7 @@ throw 1;
         V[i] = data[i] - arg[i];
     return V;
 }
+
 //Операция умножения вектора на число
 TVector TVector::operator * (double arg) const {
     TVector V( n );
@@ -106,6 +116,7 @@ TVector TVector::operator * (double arg) const {
         V[i] = data[i]*arg;
     return V;
 }
+
 //Операция скалярного умножения векторов
 double TVector::operator * (const TVector& arg) const {
     //TVector V(n);
@@ -114,6 +125,7 @@ double TVector::operator * (const TVector& arg) const {
         R = R + data[i]*arg[i];
     return R;
 }
+
 // Оператор умножения вектора на матрицу
 TVector TVector::operator * (const TMatrix& arg) const{
     TVector V(n);
@@ -127,6 +139,7 @@ TVector TVector::operator * (const TMatrix& arg) const{
         }
     return V;
 }
+
 // Оператор векторного умножения векторов
 TVector TVector::operator ^ (const TVector& arg) const {
 #ifdef _DEBUG
@@ -140,10 +153,12 @@ TVector TVector::operator ^ (const TVector& arg) const {
     V[2] = data[0]*arg[1] - data[1]*arg[0];
     return V;
 }
+
 //Дружественная функция - оператор умножения числа на вектор
 TVector operator * (double lvalue, const TVector& rvalue) {
     return rvalue * lvalue;
 }
+
 // Функция получения модуля вектора
 double TVector::length() const {
     double R;
@@ -153,6 +168,7 @@ double TVector::length() const {
     R = sqrt(R);
     return R;
 }
+
 // Функция нормирования вектора
 TVector& TVector::norm() {
     double r = this->length();
@@ -161,6 +177,7 @@ TVector& TVector::norm() {
             data[i] /= r;  // делим каждый "свой" элемент на модуль
     return *this; // возвращаем "себя". Т.к. this - это указатель, то для получения ссылки (т.е. типа TVector&) нужно перед ним поставить *.
 }
+
 // Поворот вектора вокруг заданной оси на заданный угол при помощи формулы Родрига
 TVector TVector::rotateByRodrigFormula(double phi, const TVector& axis) const {
     TVector V = *this;
@@ -175,15 +192,20 @@ TVector TVector::rotateByRodrigFormula(double phi, const TVector& axis) const {
     VR = V + 2*q0*b + 2*(q^b);
     return VR;
 }
+
 // МАТРИЦЫ
+
 // Конструктор по умолчанию
 TMatrix::TMatrix() : n(0), m(0), data(NULL) {}
+
 // Конструктор с заданной размерностью
 TMatrix::TMatrix(int n, int m) : n(0), m(0), data(NULL) { resize(n, m); }
+
 // Конструктор копий
 TMatrix::TMatrix(const TMatrix& rvalue) : n(0), m(0), data(NULL) {
     (*this) = rvalue;
 }
+
 // Оператор присваивания
 TMatrix& TMatrix::operator = (const TMatrix& rvalue) {
     // Если левый операнд не совпадает с правым
@@ -199,6 +221,7 @@ TMatrix& TMatrix::operator = (const TMatrix& rvalue) {
     // Возврат ссылки на левый операнд для возможности цепочки присваиваний
     return (*this);
 }
+
 // Деструктор объекта матрицы
 TMatrix::~TMatrix() {
     if (data) {
@@ -209,6 +232,7 @@ TMatrix::~TMatrix() {
         n = m = 0;
     }
 }
+
 // Функция задания размерности матрицы
 void TMatrix::resize(int n, int m) {
     // Кол-во строк, которые нужно перенести в новые блоки данных
@@ -248,6 +272,7 @@ void TMatrix::resize(int n, int m) {
         this->n = n;
     }
 }
+
 // Оператор - унарный минус
 TMatrix TMatrix::operator - () const {
     TMatrix M(n,m);
@@ -256,6 +281,7 @@ TMatrix TMatrix::operator - () const {
             M(i,j) = -data[i][j];
     return M;
 }
+
 // Оператор вычитания матриц
 TMatrix TMatrix::operator - (const TMatrix& arg) const{
 #ifdef _DEBUG
@@ -268,6 +294,7 @@ TMatrix TMatrix::operator - (const TMatrix& arg) const{
             M(i,j) = data[i][j] - arg(i,j);
     return M;
 }
+
 // Оператор сложения матриц
 TMatrix TMatrix::operator + (const TMatrix& arg) const {
 #ifdef _DEBUG
@@ -280,6 +307,7 @@ TMatrix TMatrix::operator + (const TMatrix& arg) const {
             M(i,j) = data[i][j] + arg(i,j);
     return M;
 }
+
 // Оператор умножения матрицы на число
 TMatrix TMatrix::operator * (double arg) const{
     TMatrix M(n, m);
@@ -288,6 +316,7 @@ TMatrix TMatrix::operator * (double arg) const{
             M(i,j) = data[i][j]*arg;
     return M;
 }
+
 // Оператор умножения матриц
 TMatrix TMatrix::operator * (const TMatrix& arg) const{
 #ifdef _DEBUG
@@ -308,6 +337,7 @@ TMatrix TMatrix::operator * (const TMatrix& arg) const{
 
     return M;
 }
+
 // Оператор умножения матрицы на вектор
 TVector TMatrix::operator * (const TVector& arg) const{
 #ifdef _DEBUG
@@ -324,6 +354,7 @@ TVector TMatrix::operator * (const TVector& arg) const{
 TMatrix operator * (double lvalue, const TMatrix& rvalue) {
     return rvalue * lvalue;
 }
+
 //функция приведения матрицы к треугольному виду
 TMatrix TMatrix::triangle() const {
     int counter = 0;
@@ -350,10 +381,11 @@ TMatrix TMatrix::triangle() const {
             }
     return M;
 }
+
 // Функция вычисления детерминанта
 double TMatrix::det() const {
     double D = 1488;                    //вычсляем методом Гаусса-Жордана
-    TMatrix M = *this;              //для этого приводим к треугольному виду
+    TMatrix M = *this;                 //для этого приводим к треугольному виду
     int counter = 0;
     for (int i = 0; i < n-1; i++)
         for (int k = i+1; k < n; k++)
@@ -386,6 +418,7 @@ double TMatrix::det() const {
     }
     return D;
 }
+
 // Производящая функция для формирования единичной матрицы
 TMatrix TMatrix::E(int n) {
     TMatrix E(n,n);
@@ -395,6 +428,7 @@ TMatrix TMatrix::E(int n) {
     }
     return E;
 }
+
 // Оператор обращения матриц (метод Гаусса)
 TMatrix TMatrix::operator ! () const {
 #ifdef _DEBUG
@@ -474,6 +508,7 @@ TMatrix& TMatrix::swapColumns(int i, int j) {
     }
     return *this;
 }
+
 // Функция перестановки строк
 TMatrix& TMatrix::swapRows(int i, int j) {
     TMatrix a = *this;
