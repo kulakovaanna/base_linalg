@@ -146,7 +146,7 @@ TMatrix
 
 akulakova29@gmail.com
  
---
+-----
 ftn21
 https://github.com/ftn21
 
@@ -298,7 +298,7 @@ If you have further questions regarding the package or you've found a mistake, p
 
 akulakova29@gmail.com
  
---
+-----
 ftn21
 https://github.com/ftn21
 
